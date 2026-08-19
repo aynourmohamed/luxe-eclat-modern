@@ -1,27 +1,83 @@
+"use client";
+
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { Menu, X, ShoppingCart, Search } from "lucide-react";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop" },
+  { href: "/contact", label: "Contact" },
+  { href: "/help", label: "Help" },
+  { href: "/account", label: "Account" },
+];
 
 export default function Navbar() {
-  return (
-    <nav className="flex items-center justify-between px-8 py-4">
-      <p className="text-xl font-bold">Luxe Éclat</p>
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
-      <div className="flex gap-6">
-        <Link href="/">Home</Link>
-        <Link href="/shop">Shop</Link>
-        <Link href="/contact">Contact</Link>
-        <Link href="/help">Help</Link>
-        <Link href="/account">Account</Link>
+  return (
+    <nav className="relative flex items-center justify-between px-4 md:px-8 py-3">
+      <Link href="/">
+        <Image src="/images/logo no bg.png" alt="Luxe Éclat" width={120} height={60} />
+      </Link>
+
+      <div className="hidden md:flex gap-6">
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={
+              pathname === link.href
+                ? "text-brand font-semibold border-b-2 border-brand"
+                : "text-black hover:text-brand"
+            }
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-2">
         <input
           type="text"
-          placeholder="Search..."
-          className="border rounded px-3 py-1 text-sm"
+          placeholder="Search"
+          className="border border-brand rounded-full px-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-brand"
         />
-        <button>Search</button>
-        <button>Cart</button>
+        <button className="bg-brand text-white rounded-full px-4 py-1 text-sm cursor-pointer hover:opacity-90 transition-opacity">
+          Search
+        </button>
+        <ShoppingCart className="w-6 h-6 text-brand cursor-pointer" />
       </div>
+
+      <div className="flex items-center gap-4 md:hidden">
+        <ShoppingCart className="w-6 h-6 text-brand" />
+        <button onClick={() => setOpen(!open)}>
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {open && (
+        <div className="absolute top-full left-0 w-full bg-white border-t flex flex-col items-center gap-4 py-6 md:hidden z-10">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className={pathname === link.href ? "text-brand font-semibold" : ""}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border rounded px-3 py-1 text-sm w-3/4"
+          />
+        </div>
+      )}
     </nav>
   );
 }

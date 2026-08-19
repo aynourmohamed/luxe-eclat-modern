@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Hero from "./components/Hero";
 import AddToCartButton from "./components/AddToCartButton";
+import Testimonials from "./components/Testimonials";
+import Newsletter from "./components/Newsletter";
 
 // types
 type CandleStatus = "in-stock" | "sold-out" | "preorder";
@@ -12,60 +14,112 @@ interface Candle {
   description: string;
   price: number;
   status: CandleStatus;
+  image: string;
   ingredients?: string;
 }
 
-// sample data
-const lavenderDream: Candle = {
-  name: "Vanilla Bourbon",
-  description: "A warm blend of vanilla and aged bourbon",
-  price: 24.99,
-  status: "sold-out",
-};
+interface Feature {
+  icon: string;
+  caption: string;
+}
+
+// picks for this season
+const picksForThisSeason: Candle[] = [
+  {
+    name: "Oud Scented Candle",
+    description: "Rich, woody aroma for a luxurious ambiance.",
+    price: 30.0,
+    status: "in-stock",
+    image: "/images/OUD candle no bg.png",
+  },
+  {
+    name: "Aromatherapy Candle",
+    description: "Essential oils for relaxation and well-being.",
+    price: 50.0,
+    status: "in-stock",
+    image: "/images/aromatherapy candle.png",
+  },
+  {
+    name: "Candle Making Kit",
+    description: "Everything you need to craft custom candles.",
+    price: 90.0,
+    status: "in-stock",
+    image: "/images/Candle kit no bg.png",
+  },
+];
+
+// our features
+const features: Feature[] = [
+  { icon: "/images/box.png", caption: "Packages made from recycled materials" },
+  { icon: "/images/oil 2.png", caption: "100% natural ingredients: Coconut, Soy, Beeswax" },
+  { icon: "/images/secure payment.png", caption: "Secure transactions and checkout" },
+  { icon: "/images/sustainability 2 no bg.png", caption: "Eco-friendly sustainability and cruelty-free" },
+];
+
 
 // components used only on home
 function CandleCard({ candle }: { candle: Candle }) {
   return (
-    <div>
-      <h3>{candle.name}</h3>
-      <p>{candle.price}</p>
-      <p>{candle.description}</p>
-      <p>{candle.status}</p>
+    <div className="rounded-2xl p-4 flex flex-col items-center text-center shadow-md bg-white">      
+    <Image
+      src={candle.image}
+      alt={candle.name}
+      width={250}
+      height={250}
+      className="object-cover rounded w-[250px] h-[250px]"
+    />
+
+      <h3 className="font-semibold mt-3">{candle.name}</h3>
+      <p className="text-sm text-gray-600 mt-1">{candle.description}</p>
+      <p className="font-bold mt-2">${candle.price.toFixed(2)}</p>
+      <AddToCartButton />
     </div>
   );
-}
-
-function PriceTag({ amount }: { amount: number }) {
-  return <p>${amount}</p>;
 }
 
 // page
 export default function Home() {
   return (
     <div>
-      {/* ─── Hero section ─── */}
-      <section className="relative w-full h-[500px]">
-        <Image
-          src="/images/first header.png"
-          alt="Luxe Éclat hero"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-black/20">
-          <h1 className="text-brand text-4xl font-bold mb-4">
-            Light Up Your Moments
-          </h1>
-          <p className="text-white text-lg max-w-xl">
-            Handcrafted candles for every mood and moment.
-          </p>
+      <Hero />
+
+      {/* picks for this season */}
+      <section className="py-12 px-6 text-center bg-[#f9f7f6]">
+        <h2 className="text-brand text-3xl font-semibold font-heading mb-8">
+          Picks for this Season
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {picksForThisSeason.map((candle) => (
+            <CandleCard key={candle.name} candle={candle} />
+          ))}
         </div>
       </section>
 
-      {/* ─── existing practice content, for now ─── */}
-      <CandleCard candle={lavenderDream} />
-      <AddToCartButton />
-      <PriceTag amount={24.99} />
+
+      {/* why choose our candles/ our features */}
+      <section className="py-12 px-6 text-center bg-white">
+        <h2 className="text-brand text-3xl font-semibold font-heading mb-8">
+          Why Choose Our Candles?
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+          {features.map((feature) => (
+            <div key={feature.caption} className="flex flex-col items-center">
+              <Image
+                src={feature.icon}
+                alt={feature.caption}
+                width={100}
+                height={100}
+                className="mb-3"
+              />
+              <p className="text-sm text-gray-600">{feature.caption}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Testimonials />
+      <Newsletter />
+
     </div>
   );
 }
