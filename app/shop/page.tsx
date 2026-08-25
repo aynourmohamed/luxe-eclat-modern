@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ProductGrid from "./ProductGrid";
 
 export const metadata: Metadata = {
   title: "Shop | Luxe Éclat",
@@ -7,8 +8,11 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   return (
-    <div>
-      <h1>Shop Page</h1>
+    <div className="py-12 px-6">
+      <h1 className="text-brand text-3xl font-heading font-semibold text-center mb-10">
+        Our Products
+      </h1>
+      <ProductGrid />
     </div>
   );
 }
