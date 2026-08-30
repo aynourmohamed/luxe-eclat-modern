@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <nav className="relative flex items-center justify-between px-4 md:px-8 py-3">
       <Link href="/">
-        <Image src="/images/logo no bg.png" alt="Luxe Éclat" width={120} height={60} />
+        <Image src="/images/logo no bg.png" alt="Luxe Éclat" width={160} height={80} />
       </Link>
 
       <div className="hidden md:flex gap-6">
@@ -49,11 +49,11 @@ export default function Navbar() {
         <button className="bg-brand text-white rounded-full px-4 py-1 text-sm cursor-pointer hover:opacity-90 transition-opacity">
           Search
         </button>
-        <ShoppingCart className="w-6 h-6 text-brand cursor-pointer" />
+        <ShoppingCart className="w-6 h-6 text-brand cursor-pointer hover:text-black transition-colors" />
       </div>
 
       <div className="flex items-center gap-4 md:hidden">
-        <ShoppingCart className="w-6 h-6 text-brand" />
+        <ShoppingCart className="w-6 h-6 text-brand hover:text-black transition-colors" />
         <button onClick={() => setOpen(!open)}>
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -71,11 +71,16 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border rounded px-3 py-1 text-sm w-3/4"
-          />
+          <div className="flex gap-2 w-3/4">
+            <input
+              type="text"
+              placeholder="Search"
+              className="border border-brand rounded-full px-3 py-1 text-sm flex-1 focus:outline-none focus:ring-1 focus:ring-brand"
+            />
+            <button className="bg-brand text-white rounded-full px-4 py-1 text-sm cursor-pointer hover:opacity-90 transition-opacity">
+              Search
+            </button>
+          </div>
         </div>
       )}
     </nav>

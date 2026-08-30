@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-
 interface Slide {
   image: string;
   title: string;
@@ -50,7 +49,6 @@ export default function Hero() {
 
   const slide = slides[current];
 
-
   return (
     <section className="relative w-full h-[500px]">
       <Image
@@ -62,7 +60,8 @@ export default function Hero() {
       />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 bg-black/30">
-        <h1 className="text-white text-2xl md:text-4xl font-bold font-heading mb-4 max-w-2xl">          {slide.title}
+        <h1 className="text-brand text-2xl md:text-4xl font-bold font-heading mb-4 max-w-2xl">
+          {slide.title}
         </h1>
         <p className="text-white text-base md:text-lg mb-6 max-w-xl">{slide.subtitle}</p>
         <div className="flex gap-4">
@@ -75,7 +74,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* arrows */}
       <button
         onClick={goToPrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 text-white cursor-pointer"
@@ -89,14 +87,14 @@ export default function Hero() {
         <ChevronRight className="w-8 h-8" />
       </button>
 
-      {/* dashed indicators */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`h-1 w-8 rounded-full cursor-pointer ${index === current ? "bg-white" : "bg-white/40"
-              }`}
+            className={`h-1 w-8 rounded-full cursor-pointer ${
+              index === current ? "bg-white" : "bg-white/40"
+            }`}
           />
         ))}
       </div>

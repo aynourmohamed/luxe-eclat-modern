@@ -20,7 +20,8 @@ export default function Testimonials() {
     <section className="bg-brand py-12 px-6">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="text-left">
-        <h2 className="text-2xl font-bold font-heading mb-6 text-white">            All Kind Words Said By Our Customers
+          <h2 className="text-2xl font-bold font-heading mb-6 text-black uppercase tracking-wide">
+            All Kind Words Said By Our Customers
           </h2>
           <blockquote className="text-white italic text-lg mb-6">
             "{testimonials[current].quote}"
@@ -31,11 +32,10 @@ export default function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`w-8 h-8 rounded-full ${
-                  index === current
-                    ? "bg-white text-brand font-bold"
-                    : "text-white border border-white"
-                }`}
+                className={`w-8 h-8 flex items-center justify-center cursor-pointer transition-colors ${index === current
+                    ? "bg-white text-brand font-bold rounded-full"
+                    : "text-white hover:text-black"
+                  }`}
               >
                 {index + 1}
               </button>
@@ -50,7 +50,6 @@ export default function Testimonials() {
           height={400}
           className="rounded-lg object-cover w-full h-[250px] md:h-[400px]"
         />
-
       </div>
     </section>
   );

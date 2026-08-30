@@ -4,14 +4,21 @@ import { FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4 px-8 py-10 mt-auto bg-gradient-to-br from-white to-[#e8e0e4] text-black">      
-    <Image src="/images/logo no bg.png" alt="Luxe Éclat" width={140} height={70} />
+    <footer className="flex flex-col items-center gap-4 px-8 py-10 bg-gradient-to-br from-white to-[#e8e0e4] text-black">      <Image src="/images/logo no bg.png" alt="Luxe Éclat" width={220} height={110} />
 
       <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
-        <Link href="/">About Us</Link>
-        <Link href="/">Privacy Policy</Link>
-        <Link href="/contact">Contact</Link>
-        <Link href="/account">Track My Order</Link>
+        <Link href="/" className="hover:text-brand hover:underline">
+          About Us
+        </Link>
+        <Link href="/" className="hover:text-brand hover:underline">
+          Privacy Policy
+        </Link>
+        <Link href="/contact" className="hover:text-brand hover:underline">
+          Contact
+        </Link>
+        <Link href="/account" className="hover:text-brand hover:underline">
+          Track My Order
+        </Link>
       </div>
 
       <div className="flex gap-4">

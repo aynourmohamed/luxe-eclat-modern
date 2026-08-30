@@ -45,36 +45,39 @@ export default function HelpPage() {
         </p>
       </div>
 
-      {/* FAQ Section */}
       <section className="mb-16">
         <h3 className="text-brand font-heading text-xl font-semibold mb-4">
           Frequently Asked Questions
         </h3>
         <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <div key={faq.question} className="border rounded-lg overflow-hidden">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center px-4 py-3 text-left font-medium cursor-pointer hover:bg-gray-50"
-              >
-                {faq.question}
-                <ChevronDown
-                  className={`w-5 h-5 shrink-0 transition-transform ${
-                    openIndex === index ? "rotate-180" : ""
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={faq.question} className="border rounded-lg overflow-hidden">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className={`w-full flex justify-between items-center px-4 py-3 text-left font-bold cursor-pointer transition-colors ${
+                    isOpen ? "bg-[#e2d9d9]" : "hover:bg-gray-50"
                   }`}
-                />
-              </button>
-              {openIndex === index && (
-                <div className="px-4 pb-4 text-gray-600 text-sm">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
+                >
+                  {faq.question}
+                  <ChevronDown
+                    className={`w-5 h-5 shrink-0 transition-transform ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-4 pb-4 text-gray-600 text-sm bg-[#e2d9d9]">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* Live Chat Section */}
       <section className="text-center">
         <h3 className="text-brand font-heading text-xl font-semibold mb-2">
           Live Chat Support

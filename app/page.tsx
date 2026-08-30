@@ -74,11 +74,11 @@ export default function Home() {
               <Image
                 src={feature.icon}
                 alt={feature.caption}
-                width={100}
-                height={100}
+                width={180}
+                height={180}
                 className="mb-3"
               />
-              <p className="text-sm text-gray-600">{feature.caption}</p>
+              <p className="text-base text-[#555] font-medium">{feature.caption}</p>
             </div>
           ))}
         </div>

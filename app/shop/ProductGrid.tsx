@@ -32,24 +32,22 @@ export default function ProductGrid() {
         ))}
       </div>
 
-      <div className="flex justify-center items-center gap-2 mt-10">
-        <button
-          onClick={() => setPage((p) => Math.max(p - 1, 1))}
-          disabled={page === 1}
-          className="px-4 py-2 rounded-full border border-brand text-brand disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer hover:bg-brand hover:text-white transition-colors"
-        >
-          Previous
-        </button>
+      <div className="flex flex-wrap justify-center items-center gap-2 mt-10">        <button
+        onClick={() => setPage((p) => Math.max(p - 1, 1))}
+        disabled={page === 1}
+        className="px-4 py-2 rounded-full border border-brand text-brand disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer hover:bg-brand hover:text-white transition-colors"
+      >
+        Previous
+      </button>
 
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
           <button
             key={pageNum}
             onClick={() => setPage(pageNum)}
-            className={`w-9 h-9 rounded-full cursor-pointer transition-colors ${
-              page === pageNum
+            className={`w-9 h-9 rounded-full cursor-pointer transition-colors ${page === pageNum
                 ? "bg-brand text-white"
                 : "border border-brand text-brand hover:bg-brand hover:text-white"
-            }`}
+              }`}
           >
             {pageNum}
           </button>
