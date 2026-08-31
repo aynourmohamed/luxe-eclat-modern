@@ -36,7 +36,7 @@ export default function HelpPage() {
   return (
     <div className="py-12 px-6 max-w-4xl mx-auto">
       <div className="text-center mb-12">
-        <h1 className="text-brand text-3xl font-heading font-semibold mb-3">
+        <h1 className="text-brand font-heading text-3xl font-semibold mb-3">
           Help &amp; Support Center
         </h1>
         <p className="text-gray-600">
@@ -49,26 +49,24 @@ export default function HelpPage() {
         <h3 className="text-brand font-heading text-xl font-semibold mb-4">
           Frequently Asked Questions
         </h3>
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={faq.question} className="border rounded-lg overflow-hidden">
+              <div key={faq.question}>
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className={`w-full flex justify-between items-center px-4 py-3 text-left font-bold cursor-pointer transition-colors ${
-                    isOpen ? "bg-[#e2d9d9]" : "hover:bg-gray-50"
-                  }`}
+                  className="w-full flex justify-between items-center px-4 py-3 text-left bg-[#e2d9d9] text-black font-heading text-lg transition-colors"
                 >
                   {faq.question}
                   <ChevronDown
-                    className={`w-5 h-5 shrink-0 transition-transform ${
+                    className={`w-5 h-5 shrink-0 text-brand transition-transform ${
                       isOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-4 pb-4 text-gray-600 text-sm bg-[#e2d9d9]">
+                  <div className="px-4 pb-4 pt-3 text-sm text-gray-700 bg-[#e2d9d9]">
                     {faq.answer}
                   </div>
                 )}
@@ -86,7 +84,7 @@ export default function HelpPage() {
           If you need immediate assistance, click the button below to chat
           with our support team.
         </p>
-        <button className="bg-brand text-white px-6 py-2 rounded-full cursor-pointer hover:opacity-90 transition-opacity">
+        <button className="bg-brand text-white text-sm px-8 py-3 rounded-full shadow-md hover:bg-white hover:text-brand border border-brand transition-transform hover:scale-105">
           Start Live Chat
         </button>
       </section>

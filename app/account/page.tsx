@@ -48,33 +48,33 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="py-16 px-6 max-w-md mx-auto">
-      <h2 className="text-brand font-heading text-2xl font-semibold mb-6 text-center">
+    <div className="py-16 px-6 max-w-2xl mx-auto">
+      <h2 className="text-brand font-heading text-4xl font-semibold mb-8 text-center">
         Login to Your Account
       </h2>
 
-      <form onSubmit={handleLoginSubmit} className="space-y-4">
+      <form onSubmit={handleLoginSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm mb-1">Email Address</label>
+          <label className="block text-base mb-2">Email Address</label>
           <input
             type="email"
             name="email"
             value={loginData.email}
             onChange={handleLoginChange}
             required
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+            className="w-full border border-gray-300 rounded px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-brand"
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Password</label>
+          <label className="block text-base mb-2">Password</label>
           <input
             type="password"
             name="password"
             value={loginData.password}
             onChange={handleLoginChange}
             required
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+            className="w-full border border-gray-300 rounded px-4 py-3 text-base focus:outline-none focus:ring-1 focus:ring-brand"
           />
         </div>
 
@@ -86,15 +86,15 @@ export default function AccountPage() {
 
         <button
           type="submit"
-          className="bg-brand text-white px-6 py-2 rounded-full cursor-pointer hover:opacity-90 transition-opacity w-full"
+          className="bg-brand text-white px-6 py-3 text-base rounded-full cursor-pointer hover:opacity-90 transition-opacity w-full max-w-xs mx-auto block"
         >
           Login
         </button>
       </form>
 
-      <hr className="my-6" />
+      <hr className="my-8" />
 
-      <p className="text-sm text-center">
+      <p className="text-base text-center">
         Don&apos;t have an account?{" "}
         <button
           onClick={() => setShowSignup(true)}
@@ -128,7 +128,7 @@ export default function AccountPage() {
                   value={signupData.fullName}
                   onChange={handleSignupChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
@@ -140,7 +140,7 @@ export default function AccountPage() {
                   value={signupData.email}
                   onChange={handleSignupChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
@@ -152,7 +152,7 @@ export default function AccountPage() {
                   value={signupData.password}
                   onChange={handleSignupChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 

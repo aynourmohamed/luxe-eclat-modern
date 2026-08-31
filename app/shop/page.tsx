@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <div className="py-12 px-6 overflow-x-hidden">
-      <h1 className="text-brand text-3xl font-heading font-semibold text-center mb-10">
+      <h1 className="text-brand font-heading text-3xl font-semibold text-center mb-10">
         Our Products
       </h1>
       <ProductGrid />

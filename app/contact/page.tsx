@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 
 interface FormData {
   name: string;
@@ -43,7 +42,7 @@ export default function ContactPage() {
   return (
     <div className="py-12 px-6 max-w-6xl mx-auto">
       <div className="text-center mb-12">
-        <h1 className="text-brand text-3xl font-heading font-semibold mb-3">
+        <h1 className="text-brand font-heading text-3xl font-semibold mb-3">
           Contact Us
         </h1>
         <p className="text-gray-600">
@@ -53,7 +52,6 @@ export default function ContactPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-        {/* Customer Service info */}
         <div>
           <h3 className="text-brand font-heading text-xl font-semibold mb-3">
             Customer Service
@@ -70,7 +68,6 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Contact form */}
         <div className="md:col-span-2">
           <h3 className="text-brand font-heading text-xl font-semibold mb-4">
             Send Us a Message
@@ -90,7 +87,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
@@ -102,7 +99,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
@@ -114,7 +111,7 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
@@ -126,7 +123,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand"
                 />
               </div>
 
