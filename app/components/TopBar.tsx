@@ -18,12 +18,15 @@ export default function TopBar() {
 
       <div className="flex gap-3 md:gap-4 shrink-0">
 
-      
-      {/* language */}
-      <div className="relative">
+
+        {/* language */}
+        <div className="relative">
           <button
             onClick={() => setLangOpen(!langOpen)}
-            className="flex items-center gap-1">
+            className="flex items-center gap-1"
+            aria-label="Change language"
+            aria-expanded={langOpen}
+          >
             {language} <ChevronDown className="w-3 h-3" />
           </button>
           {langOpen && (
@@ -49,6 +52,8 @@ export default function TopBar() {
           <button
             onClick={() => setCurrencyOpen(!currencyOpen)}
             className="flex items-center gap-1"
+            aria-label="Change currency"
+            aria-expanded={currencyOpen}
           >
             {currency} <ChevronDown className="w-3 h-3" />
           </button>
@@ -70,7 +75,7 @@ export default function TopBar() {
           )}
         </div>
 
-        
+
       </div>
     </div>
   );

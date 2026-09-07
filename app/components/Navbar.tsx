@@ -4,7 +4,9 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { totalItems } = useCart();
 
   return (
     <nav className="relative flex items-center justify-between px-4 md:px-8 py-3">
@@ -49,12 +52,26 @@ export default function Navbar() {
         <button className="bg-brand text-white rounded-full px-4 py-1 text-sm cursor-pointer hover:opacity-90 transition-opacity">
           Search
         </button>
-        <ShoppingCart className="w-6 h-6 text-brand cursor-pointer hover:text-black transition-colors" />
+        <Link href="/cart" className="relative">
+          <FaShoppingCart className="w-6 h-6 text-brand cursor-pointer hover:text-black transition-colors" />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-brand text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
+        </Link>
       </div>
 
       <div className="flex items-center gap-4 md:hidden">
-        <ShoppingCart className="w-6 h-6 text-brand hover:text-black transition-colors" />
-        <button onClick={() => setOpen(!open)}>
+        <Link href="/cart" className="relative">
+          <FaShoppingCart className="w-6 h-6 text-brand" />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-brand text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {totalItems}
+            </span>
+          )}
+        </Link>
+        <button onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"}>
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
