@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Minus, Plus } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
-export default function CartPage() {
+export default function CartContent() {
   const { items, removeFromCart, updateQuantity } = useCart();
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);

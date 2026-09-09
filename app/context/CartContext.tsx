@@ -19,6 +19,7 @@ interface CartContextType {
   removeFromCart: (slug: string) => void;
   updateQuantity: (slug: string, quantity: number) => void;
   getQuantity: (slug: string) => number;
+  clearCart: () => void;
   totalItems: number;
 }
 
@@ -30,7 +31,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // Load cart from localStorage once, when the app first mounts
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -39,7 +39,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setHasLoaded(true);
   }, []);
 
-  // Save cart to localStorage every time it changes
   useEffect(() => {
     if (hasLoaded) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
@@ -79,6 +78,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return item ? item.quantity : 0;
   }
 
+  function clearCart() {
+    setItems([]);
+  }
+
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -89,6 +92,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeFromCart,
         updateQuantity,
         getQuantity,
+        clearCart,
         totalItems,
       }}
     >

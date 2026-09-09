@@ -14,7 +14,7 @@ interface ShippingData {
 }
 
 export default function CheckoutPage() {
-  const { items, totalItems } = useCart();
+  const { items, totalItems, clearCart } = useCart();
   const [shippingData, setShippingData] = useState<ShippingData>({
     fullName: "",
     address: "",
@@ -23,6 +23,7 @@ export default function CheckoutPage() {
     email: "",
   });
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderTotal, setOrderTotal] = useState(0);
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -33,10 +34,35 @@ export default function CheckoutPage() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setOrderTotal(total);
     setOrderPlaced(true);
+    clearCart();
   }
 
-  if (totalItems === 0 && !orderPlaced) {
+  if (orderPlaced) {
+    return (
+      <div className="py-16 px-6 text-center max-w-2xl mx-auto">
+        <h1 className="text-brand text-3xl font-heading font-semibold mb-4">
+          Order Confirmed!
+        </h1>
+        <p className="text-gray-600 mb-2">
+          Thank you, {shippingData.fullName || "friend"} — your order of $
+          {orderTotal.toFixed(2)} has been placed.
+        </p>
+        <p className="text-gray-500 text-sm mb-6">
+          (This is a demo checkout — no real payment was processed.)
+        </p>
+        <Link
+          href="/shop"
+          className="bg-brand text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity"
+        >
+          Continue Shopping
+        </Link>
+      </div>
+    );
+  }
+
+  if (totalItems === 0) {
     return (
       <div className="py-16 px-6 text-center max-w-2xl mx-auto">
         <h1 className="text-brand text-3xl font-heading font-semibold mb-4">
@@ -55,30 +81,8 @@ export default function CheckoutPage() {
     );
   }
 
-  if (orderPlaced) {
-    return (
-      <div className="py-16 px-6 text-center max-w-2xl mx-auto">
-        <h1 className="text-brand text-3xl font-heading font-semibold mb-4">
-          Order Confirmed!
-        </h1>
-        <p className="text-gray-600 mb-2">
-          Thank you, {shippingData.fullName || "friend"} — your order has been
-          placed.
-        </p>
-        
-        <Link
-          href="/shop"
-          className="bg-brand text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity"
-        >
-          Continue Shopping
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <div className="py-12 px-6 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-      {/* Shipping form */}
       <div>
         <h1 className="text-brand text-2xl font-heading font-semibold mb-6">
           Shipping Details
@@ -151,7 +155,6 @@ export default function CheckoutPage() {
         </form>
       </div>
 
-      {/* Order summary */}
       <div>
         <h2 className="text-brand text-2xl font-heading font-semibold mb-6">
           Order Summary

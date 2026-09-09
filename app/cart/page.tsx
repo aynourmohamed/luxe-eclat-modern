@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "Review items in your Luxe Éclat shopping cart.",
 };
 
-export default function HelpPage() {
+export default function CartPage() {
   return <CartContent />;
 }
