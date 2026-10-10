@@ -4,7 +4,7 @@ A modern rebuild of the Luxe Éclat candle e-commerce site. The original was bui
 
 Live Demo
 
-[YOUR-VERCEL-URL.vercel.app](https://luxe-eclat-modern.vercel.app/)
+[https://luxe-eclat-modern.vercel.app/](https://luxe-eclat-modern.vercel.app/)
 
 ## Tech Stack
 
